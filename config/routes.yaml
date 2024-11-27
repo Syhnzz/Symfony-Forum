@@ -3,3 +3,18 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
+
+info:
+    path: /client/prenom/{prenom}
+    controller: App\Controller\Client::info
+    requirements:
+        prenom: '[a-zA-Z]+\w+(-\w+)*'
+    methods: GET
+
+home:
+    path: /img/home
+    controller: App\Controller\ImageController::home
+
+affiche:
+    path: /img/data/{fichier}
+    controller: App\Controller\ImageController::affiche
