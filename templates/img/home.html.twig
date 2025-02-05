@@ -1,14 +1,12 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Home{% endblock %}
+{% block title %}{{ 'Home'|trans }}{% endblock %}
 
 {% block body %}
-    <br>
-    <br>
-    <br>
-    <br>
+    <div class="hero-section">
+        <h1 class="text-center text-uppercase fw-bold" id="title">
+            {{ 'My Website'|trans }}
+        </h1>
+    </div>
 
-    <h1 class="text-center text-uppercase fs-1 fw-bold">
-        Site image
-    </h1>
 {% endblock %}

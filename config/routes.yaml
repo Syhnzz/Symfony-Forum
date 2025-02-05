@@ -18,3 +18,13 @@ home:
 affiche:
     path: /img/data/{fichier}
     controller: App\Controller\ImageController::affiche
+
+register:
+    path: /img/home/register
+    controller: App\Controller\Register::register
+
+registration_success:
+    path: /img/home/register_succes/{login}
+    controller: App\Controller\SigninController::registerSuccess
+
+

@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\File\File;
 
 class ImageController extends AbstractController
 {
@@ -14,21 +15,33 @@ class ImageController extends AbstractController
     public function affiche(string $fichier): Response
     {
 
-        $image = $this->getParameter('kernel.project_dir') . '/public/images/' . $fichier;
+        $image = $this->getParameter('kernel.project_dir') . '/public/images/';
 
+        $possibleExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'webp'];
 
-        if (!file_exists($image)) {
-            throw $this->createNotFoundException('Fichier non trouver');
+        $imagePath = null;
+        foreach ($possibleExtensions as $ext) {
+            $path = $image . '/' . $fichier . '.' . $ext;
+            if (file_exists($path)) {
+                $imagePath = $path;
+                break;
+            }
         }
 
-        $imageData = file_get_contents($image);
-        $mimeType = mime_content_type($image);
-        $response = new Response($imageData);
+        if (!$imagePath) {
+            throw new NotFoundHttpException('Image non trouvée.');
+        }
 
-        $response->headers->set('Content-Type', $mimeType);
-        $response->headers->set('Content-Length', strlen($imageData));
+        $file = new File($imagePath);
+        $mimeType = $file->getMimeType();
 
-        return $response;
+        $imageContent = file_get_contents($imagePath);
+
+        return new Response(
+            $imageContent,
+            200,
+            ['Content-Type' => $mimeType]
+        );
     }
 
     public function menu(): Response
@@ -50,7 +63,6 @@ class ImageController extends AbstractController
             'images' => $images,
         ]);
 
-        return $this->file($imageDirectory, $images);
     }
 
 
