@@ -1,10 +1,20 @@
 # see https://symfony.com/doc/current/reference/configuration/framework.html
 framework:
+    trusted_proxies: '10.5.10.0/8'
+    trusted_headers: [ 'x-forwarded-for', 'x-forwarded-host', 'x-forwarded-port' ]
+    default_locale: en
+    translator:
+        fallbacks:
+            - en
+
     secret: '%env(APP_SECRET)%'
     #csrf_protection: true
 
     # Note that the session will be started ONLY if you read or write from it.
     session: true
+    #desactivation de la protection csrf pour l'exercice
+    form:
+        csrf_protection: false
 
     #esi: true
     #fragments: true

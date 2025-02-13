@@ -1,6 +1,12 @@
 monolog:
-    channels:
-        - deprecation # Deprecations are logged in the dedicated "deprecation" channel when it exists
+    channels: ['app']  # Vous pouvez créer un canal de log spécifique
+
+    handlers:
+        main:
+            type: stream
+            path: "%kernel.logs_dir%/dev.log"  # Le fichier de log (peut être dev.log ou prod.log en fonction de l'environnement)
+            level: info
+            channels: ['!event'] # Deprecations are logged in the dedicated "deprecation" channel when it exists
 
 when@dev:
     monolog:
@@ -60,3 +66,5 @@ when@prod:
                 channels: [deprecation]
                 path: php://stderr
                 formatter: monolog.formatter.json
+
+

@@ -1,0 +1,17 @@
+welcome_message: 'Bienvenue sur le site !'
+Login: 'Se connecter'
+Register: Inscription
+'List Users': 'Liste des Utilisateurs'
+Home: Accueil
+'My Website': 'Mon Site'
+Logout: 'Se deconnecter'
+'Pictures Menu': 'Menu des images'
+password: 'Mot de passe'
+'Enter your password': 'Entrer votre mot de passe'
+'Enter your email': 'Entrer votre email'
+'The form was not submited correctly': 'Vous avez pas bien rempli le formulaire.'
+'Confirm your password': 'Confirmer le mot de passe'
+'The passwords do not match.': 'Les mots de passe ne correspondent pas.'
+'Sign in': 'inscription'
+
+
