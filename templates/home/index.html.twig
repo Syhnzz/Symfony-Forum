@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Accueil{% endblock %}
+
+{% block body %}
+    <style>
+        .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+        .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    </style>
+
+    <div class="example-wrapper">
+        <h1 class="title_home">Bienvenue sur mon Forum</h1>
+    </div>
+
+    <h1>Liste des thèmes</h1>
+
+    <table>
+        <thead>
+        <tr>
+            <th>Titre</th>
+            <th>Dernière discussion</th>
+            <th>Nombre de discussions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for theme in themes %}
+            <tr>
+                <td><a href="{{ path('app_theme', {'id': theme.id}) }}">{{ theme.titre }}</a></td>
+                <td>
+                    {% if theme.lastDiscussionDate %}
+                        {{ theme.lastDiscussionDate|date('d/m/Y H:i') }}
+                    {% else %}
+                        Aucune discussion
+                    {% endif %}
+                </td>
+                <td>{{ theme.discussionCount }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <br>
+    {% if current_page > 1 %}
+        <a href="?page={{ current_page - 1 }}">Page précédente</a>
+    {% endif %}
+
+    <span>Page {{ current_page }} sur {{ total_pages }}</span>
+
+    {% if current_page < total_pages %}
+        <a href="?page={{ current_page + 1 }}">Page suivante</a>
+    {% endif %}
+
+    <br><br><br><br><br>
+
+    {% if app.session.get('user')  %}
+
+        {% if 'ROLE_MODERATOR' in app.session.get('user')['roles'] %}
+            <h2>Créer un nouveaux theme (Moderateur)</h2>
+            {{ form(form) }}
+        {% endif %}
+
+    {% endif %}
+
+{% endblock %}

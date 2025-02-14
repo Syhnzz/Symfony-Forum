@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ discussion.titre }}{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+    <h3>{{ discussion.titre }}</h3>
+    <p>Publié par : {{ discussion.user ? discussion.user.username : 'Anonyme' }}</p>
+    <p>le : {{ discussion.createdAt|date('Y-m-d H:i') }}</p>
+
+    <h5>Commentaires :</h5>
+    {% for comment in comments %}
+        <div class="comment">
+            <p><strong>{{ comment.user.username }}
+                    {% if 'ROLE_MODERATOR' in comment.user.roles %}
+                        (Moderateur)
+                    {% endif %}</strong>
+                <span>{{ comment.createdAt|date('Y-m-d H:i') }}</span></p>
+            <p>{{ comment.texte }}</p>
+        </div>
+    {% else %}
+        <p>Aucun commentaire pour cette discussion.</p>
+    {% endfor %}
+
+    {% if app.session.get('user')  %}
+
+    <h5>Ajouter un commentaire</h5>
+    {{ form(form) }}
+
+    {% endif %}
+
+</div>
+{% endblock %}

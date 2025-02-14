@@ -1,17 +1,44 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <meta charset="UTF-8">
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
-        {% block stylesheets %}
-        {% endblock %}
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    {% block stylesheets %}
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+    {% endblock %}
 
-        {% block javascripts %}
-            {% block importmap %}{{ importmap('app') }}{% endblock %}
-        {% endblock %}
-    </head>
-    <body>
-        {% block body %}{% endblock %}
-    </body>
+    {% block javascripts %}
+        {% block importmap %}{{ importmap('app') }}{% endblock %}
+    {% endblock %}
+</head>
+<body>
+<header>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item active"><a class="nav-link" href="{{ path('app_home') }}">Accueil</a></li>
+                {% if app.session.get('user')  %}
+                    <li class="nav-item active"><a class="nav-link" href="{{ path('app_profile') }}">{{ app.session.get('user')['username'] }}
+                            {% if 'ROLE_MODERATOR' in app.session.get('user')['roles'] %}
+                                (Moderateur)
+                            {% endif %}</a></li>
+                    {% if 'ROLE_MODERATOR' in app.session.get('user')['roles'] %}
+                    <li class="nav-item active"><a class="nav-link" href="{{ path('app_users_list') }}">Liste Utilisateurs</a></li>
+                            {% endif %}
+
+                    <li class="nav-item active"><a class="nav-link" href="{{ path('app_logout') }}">Se deconnecter</a></li>
+                {% else %}
+                <li class="nav-item active"><a class="nav-link" href="{{ path('app_login') }}">Connexion</a></li>
+                <li class="nav-item active"><a class="nav-link" href="{{ path('app_signin') }}">Inscription</a></li>
+                {% endif %}
+            </ul>
+        </nav>
+    </nav>
+</header>
+
+{% block body %}
+{% endblock %}
+</body>
 </html>
