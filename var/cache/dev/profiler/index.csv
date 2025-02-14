@@ -27,3 +27,10 @@ a11d36,127.0.0.1,GET,http://127.0.0.1:8000/apple-touch-icon.png,1739488048,cbc32
 cbc327,127.0.0.1,GET,http://127.0.0.1:8000/apple-touch-icon.png,1739488048,,404,request
 146b30,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1739488049,b784f7,404,request
 b784f7,127.0.0.1,GET,http://127.0.0.1:8000/favicon.ico,1739488049,,404,request
+7a0fd9,::1,GET,http://localhost:8000/,1739490277,,404,request
+adf275,::1,GET,http://localhost:8000/favicon.ico,1739490278,613bf2,404,request
+6edb77,::1,GET,http://localhost:8000/apple-touch-icon-precomposed.png,1739490278,0e237c,404,request
+613bf2,::1,GET,http://localhost:8000/favicon.ico,1739490278,,404,request
+0e237c,::1,GET,http://localhost:8000/apple-touch-icon-precomposed.png,1739490278,,404,request
+bde410,::1,GET,http://localhost:8000/apple-touch-icon.png,1739490278,af878e,404,request
+af878e,::1,GET,http://localhost:8000/apple-touch-icon.png,1739490278,,404,request

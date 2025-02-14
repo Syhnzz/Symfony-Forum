@@ -109,6 +109,8 @@
     <parameter key="kernel.default_locale">en</parameter>
     <parameter key="kernel.enabled_locales" type="collection"/>
     <parameter key="kernel.error_controller">error_controller</parameter>
+    <parameter key="kernel.trusted_proxies">10.5.10.0/8</parameter>
+    <parameter key="kernel.trusted_headers">22</parameter>
     <parameter key="debug.file_link_format">%env(default::SYMFONY_IDE)%</parameter>
     <parameter key="asset.request_context.base_path">null</parameter>
     <parameter key="asset.request_context.secure">null</parameter>
