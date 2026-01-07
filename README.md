@@ -1,4 +1,4 @@
-##Forum Symfony – Projet Web PHP SYMFONY :
+## Forum Symfony – Projet Web PHP SYMFONY :
 
 Application web développée sous Symfony permettant la gestion d’un: forum complet.
 
