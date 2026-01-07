@@ -27,30 +27,6 @@ Application web développée sous Symfony permettant la gestion d’un: forum co
 ├── Form
 └── Security
 
-
-## Installation
-
-1. Cloner le dépôt :
-git clone https://github.com/Syhnzz/Symfony-Forum.git cd Symfony-Forum
-
-2. Installer les dépendances :
-composer install
-
-
-3. Configurer `.env` :
-DATABASE_URL="mysql://root:@127.0.0.1:3306/forum"
-
-4. Créer la base :
-php bin/console doctrine:database:create php bin/console doctrine:migrations:migrate
-
-
-5. Lancer le serveur :
-symfony server:start
-
-
-## Captures d’écran
-
-
 ## Ce que j’ai appris
 - Développement d’un site web complet avec Symfony
 - Architecture MVC
